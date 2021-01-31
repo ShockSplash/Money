@@ -1,5 +1,5 @@
 'use strict';
-let money = prompt("Ваш бюджет на месяц?", ""),
+let money = +prompt("Ваш бюджет на месяц?", ""),
     data = prompt("Введите дату в формате YYYY-MM-DD", "2021-02-01"),
     appData = {
         bank: money,
@@ -9,12 +9,37 @@ let money = prompt("Ваш бюджет на месяц?", ""),
         income: [],
         savings: false
     };
-let a1 = prompt("Введите обязательную статью расходов в этом месяце", ""),
-    a2 = prompt("Во сколько это обойдется?"),
-    a3 = prompt("Введите обязательную статью расходов в этом месяце", ""),
-    a4 = prompt("Во сколько это обойдется?");
-appData.expenses.a1 = a2;
-appData.expenses.a3 = a4;
-alert("Ваш ежедневный бюджет: " + appData.bank / 30);
-console.log(appData.expenses.a1);
-console.log(appData.expenses.a3);
+for (let i = 0; i < 2; i++) {
+    let a = prompt("Введите обязательную статью расходов в этом месяце", ""),
+        b = prompt("Во сколько это обойдется?");
+    if ((typeof (a) != null) && (typeof (b) != null) && (typeof (a) === 'string') && (typeof (b) === 'string') &&
+        (a != "") && (b != "") && (a.length<50) ) {
+            console.log("All ok!");
+        appData.expenses[a] = b;
+    }else{
+        console.log("Bad result");
+        i--;
+    }
+};
+//let p = 0;
+//while (p < 2){
+  //  for (let i = 0; i < 2; i++) {
+    //    let a = prompt("Введите обязательную статью расходов в этом месяце", ""),
+      //      b = prompt("Во сколько это обойдется?");
+        //if ((typeof (a) != null) && (typeof (b) != null) && (typeof (a) === 'string') && (typeof (b) === 'string') &&
+          //  (a != "") && (b != "") && (a.length<50) ) {
+            //    console.log("All ok!");
+            //appData.expenses[a] = b;
+       // };
+        // console.log(appData.expenses);
+  //  p++;
+//}
+appData.MoneyPerDay=appData.bank/30;
+alert("Ваш ежедневный бюджет: " + appData.MoneyPerDay);
+if(appData.MoneyPerDay<300){
+    console.log("Low level of profit")
+}else if((appData.MoneyPerDay > 300 ) && (appData.MoneyPerDay < 1000)){
+    console.log("Midium level of profit")
+}else if(appData.MoneyPerDay>100){
+    console.log("High level of profit")
+}
