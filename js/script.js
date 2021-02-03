@@ -1,5 +1,37 @@
 'use strict';
+let startСalculation = document.getElementById('start'),
+    budgetValue=document.getElementsByClassName('budget-value')[0],
+    dayBudget = document.getElementsByClassName('daybudget')[0],
+    dayBudgetValue = document.getElementsByClassName('daybudget-value')[0],
+    level = document.getElementsByClassName('level')[0],
+    levelValue = document.getElementsByClassName('level-value')[0],
+    expenses = document.getElementsByClassName('expenses')[0],
+    expensesValue = document.getElementsByClassName('expenses-value')[0],
+    optionalexpenses = document.getElementsByClassName('optionalexpenses')[0],
+    optionalexpensesValue = document.getElementsByClassName('optionalexpenses-value')[0],
+    income = document.getElementsByClassName('income')[0],
+    incomeValue = document.getElementsByClassName('income-value'),
+    monthsavings = document.getElementsByClassName('monthsavings')[0],
+    monthsavingsValue = document.getElementsByClassName('monthsavings-value')[0],
+    yearsavings = document.getElementsByClassName('yearsavings')[0],
+    yearsavingsValue = document.getElementsByClassName('yearsavings-value')[0];
 
+
+
+let input = document.getElementsByClassName('expenses-item'),
+    Aprove1 = document.getElementsByTagName('button')[0],
+    Aprove2 = document.getElementsByTagName('button')[1],
+    calculate = document.getElementsByTagName('button')[2],
+    inputOptionalExpenses = document.querySelectorAll('.optionalexpenses-item'),
+    chooseIncome = document.querySelector('.choose-income'),   //поле необязательных расходов
+    checkSavings = document.querySelector('#savings'),
+    chooseSum = document.querySelector('.choose-sum'),
+    choosePersent = document.querySelector('.choose-percent'),
+    year = document.querySelector('.year-value'),
+    month = document.querySelector('.month-value'),
+    day = document.querySelector('.day-value');
+
+    
 let money, data;
 
 function start() { //Функция ввода бюджета и даты
