@@ -29,13 +29,37 @@ let expensesItem = document.getElementsByClassName('expenses-item'),
     choosePersent = document.querySelector('.choose-percent'),
     year = document.querySelector('.year-value'),
     month = document.querySelector('.month-value'),
-    day = document.querySelector('.day-value');
+    day = document.querySelector('.day-value'),
+    ExpensesItemBtn = document.getElementById('ExpensesItemBtn');
 
 
 let money, data;
 
 
-
+startСalculation.addEventListener('mouseenter', function () {
+    startСalculation.style.backgroundColor = '#0b99db';
+});
+startСalculation.addEventListener('mouseleave', function () {
+    startСalculation.style.backgroundColor = '#79cbf1';
+});
+Aprove1.addEventListener('mouseenter', function () {
+    Aprove1.style.backgroundColor = '#0b99db';
+});
+Aprove1.addEventListener('mouseleave', function () {
+    Aprove1.style.backgroundColor = '#79cbf1';
+});
+Aprove2.addEventListener('mouseenter', function () {
+    Aprove2.style.backgroundColor = '#0b99db';
+});
+Aprove2.addEventListener('mouseleave', function () {
+    Aprove2.style.backgroundColor = '#79cbf1';
+});
+calculate.addEventListener('mouseenter', function () {
+    calculate.style.backgroundColor = '#0b99db';
+});
+calculate.addEventListener('mouseleave', function () {
+    calculate.style.backgroundColor = '#79cbf1';
+});
 startСalculation.addEventListener('click', function () {
     data = prompt("Введите дату в формате YYYY-MM-DD", "2019-05-11");
     money = +prompt("Ваш бюджет на месяц?", "");
@@ -95,33 +119,33 @@ chooseIncome.addEventListener('change', function () {
     appData.income = item.split(', ');
     incomeValue.textContent = appData.income;
 });
-checkSavings.addEventListener('click', function(){
-    if (appData.savings == true){
+checkSavings.addEventListener('click', function () {
+    if (appData.savings == true) {
         chooseSum.value = "";
         choosePersent.value = "";
-        appData.savings= false;
+        appData.savings = false;
     } else {
-        appData.savings=true;
+        appData.savings = true;
     }
 });
-chooseSum.addEventListener('input',  function(){
-    if (appData.savings == true){
-        let sumday=chooseSum.value,
-        percentDay = choosePersent.value;
+chooseSum.addEventListener('input', function () {
+    if (appData.savings == true) {
+        let sumday = chooseSum.value,
+            percentDay = choosePersent.value;
         appData.MonthIncome = ((sumday * percentDay) / 100 / 12).toFixed(1);
-        appData.YearIncome = ((sumday * percentDay) / 100 ).toFixed(1);
+        appData.YearIncome = ((sumday * percentDay) / 100).toFixed(1);
         monthsavingsValue.textContent = appData.MonthIncome;
-        yearsavingsValue.textContent =appData.YearIncome;
+        yearsavingsValue.textContent = appData.YearIncome;
     }
 });
-choosePersent.addEventListener('input', function(){
-    if (appData.savings == true){
-        let sumday=chooseSum.value,
-        percentDay = choosePersent.value;
+choosePersent.addEventListener('input', function () {
+    if (appData.savings == true) {
+        let sumday = +chooseSum.value,
+            percentDay = +choosePersent.value;
         appData.MonthIncome = ((sumday * percentDay) / 100 / 12).toFixed(1);
-        appData.YearIncome = ((sumday * percentDay) / 100 ).toFixed(1);
+        appData.YearIncome = ((sumday * percentDay) / 100).toFixed(1);
         monthsavingsValue.textContent = appData.MonthIncome;
-        yearsavingsValue.textContent =appData.YearIncome;
+        yearsavingsValue.textContent = appData.YearIncome;
     }
 });
 let appData = { //Объект, где хранятся все данные
