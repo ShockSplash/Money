@@ -10,7 +10,7 @@ let startСalculation = document.getElementById('start'),
     optionalexpenses = document.getElementsByClassName('optionalexpenses')[0],
     optionalexpensesValue = document.getElementsByClassName('optionalexpenses-value')[0],
     income = document.getElementsByClassName('income')[0],
-    incomeValue = document.getElementsByClassName('income-value'),
+    incomeValue = document.getElementsByClassName('income-value')[0],
     monthsavings = document.getElementsByClassName('monthsavings')[0],
     monthsavingsValue = document.getElementsByClassName('monthsavings-value')[0],
     yearsavings = document.getElementsByClassName('yearsavings')[0],
@@ -90,10 +90,39 @@ calculate.addEventListener('click', function () {
         levelValue.textContent = "Произошла ошибка!(Нажмите начать расчет)";
     };
 });
-chooseIncome.addEventListener('input', function () {
+chooseIncome.addEventListener('change', function () {
     let item = chooseIncome.value;
     appData.income = item.split(', ');
     incomeValue.textContent = appData.income;
+});
+checkSavings.addEventListener('click', function(){
+    if (appData.savings == true){
+        chooseSum.value = "";
+        choosePersent.value = "";
+        appData.savings= false;
+    } else {
+        appData.savings=true;
+    }
+});
+chooseSum.addEventListener('input',  function(){
+    if (appData.savings == true){
+        let sumday=chooseSum.value,
+        percentDay = choosePersent.value;
+        appData.MonthIncome = ((sumday * percentDay) / 100 / 12).toFixed(1);
+        appData.YearIncome = ((sumday * percentDay) / 100 ).toFixed(1);
+        monthsavingsValue.textContent = appData.MonthIncome;
+        yearsavingsValue.textContent =appData.YearIncome;
+    }
+});
+choosePersent.addEventListener('input', function(){
+    if (appData.savings == true){
+        let sumday=chooseSum.value,
+        percentDay = choosePersent.value;
+        appData.MonthIncome = ((sumday * percentDay) / 100 / 12).toFixed(1);
+        appData.YearIncome = ((sumday * percentDay) / 100 ).toFixed(1);
+        monthsavingsValue.textContent = appData.MonthIncome;
+        yearsavingsValue.textContent =appData.YearIncome;
+    }
 });
 let appData = { //Объект, где хранятся все данные
     bank: money, // бюджет
@@ -101,22 +130,5 @@ let appData = { //Объект, где хранятся все данные
     expenses: {}, // 2  статьи обязательных расходов
     OptionalExpenses: {}, // 3 статьи необязательных расходов
     income: [],
-    savings: true, // наличие сбережений
-    detectLevel: function () {
-        if (appData.MoneyPerDay < 300) { // функция вывода в консоль уровня дохода
-            console.log("Low level of profit")
-        } else if ((appData.MoneyPerDay > 300) && (appData.MoneyPerDay < 1000)) {
-            console.log("Midium level of profit")
-        } else if (appData.MoneyPerDay > 100) {
-            console.log("High level of profit")
-        }
-    },
-    checkSavings: function () {
-        if (appData.savings) { // функция высчитывания дохода от "Накоплений" в месяц
-            let save = +prompt("Какова сумма накоплений?"),
-                persent = +prompt("Под какой процент?");
-            appData.MonthIncome = ((save * persent) / 100 / 12).toFixed();
-            alert("Доход в месяц с вашего депозита: " + appData.MonthIncome);
-        }
-    },
+    savings: false // наличие сбережений
 }
